@@ -4,7 +4,9 @@ using UserProvider.Data.Entities;
 
 namespace UserProvider.Data.Contexts;
 
-public class UserDataContext(DbContextOptions<UserDataContext> options) : IdentityDbContext<UserEntity>(options)
+public class UserDataContext : IdentityDbContext<UserEntity>
 {
-
+    public UserDataContext(DbContextOptions<UserDataContext> options) : base(options)
+    {
+    }
 }
