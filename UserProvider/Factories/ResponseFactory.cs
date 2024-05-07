@@ -59,6 +59,15 @@ public class ResponseFactory
         };
     }
 
+    public static ResponseResult UnAuthorized(string? message = null)
+    {
+        return new ResponseResult
+        {
+            Message = message ?? "The server encountered an unexpected condition",
+            StatusCode = ResultStatus.UNAUTHORIZED,
+        };
+    }
+
     public static ResponseResult ServerError(string? message = null)
     {
         return new ResponseResult

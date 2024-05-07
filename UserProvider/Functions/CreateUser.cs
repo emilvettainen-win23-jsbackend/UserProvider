@@ -1,13 +1,10 @@
 using Azure.Messaging.ServiceBus;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.EntityFrameworkCore.Storage.Json;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Text;
 using UserProvider.Helpers.Responses;
 using UserProvider.Helpers.Validations;
 using UserProvider.Models;
@@ -46,8 +43,7 @@ namespace UserProvider.Functions
                 {
                     case ResultStatus.OK:
                         var sender = _client.CreateSender("verification_request");
-                        var messages = new ServiceBusMessage(JsonConvert.SerializeObject(new RequestModel { Email = model.Email }));
-                        await sender.SendMessageAsync(messages);
+                        await sender.SendMessageAsync(new ServiceBusMessage(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new { model.Email }))));
                         return new OkResult();
 
                     case ResultStatus.EXISTS:

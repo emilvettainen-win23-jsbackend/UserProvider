@@ -1,12 +1,12 @@
 using Azure.Messaging.ServiceBus;
+using Data.Contexts;
+using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics;
-using UserProvider.Data.Contexts;
-using UserProvider.Data.Entities;
 using UserProvider.Services;
 
 var host = new HostBuilder()
@@ -17,6 +17,8 @@ var host = new HostBuilder()
     {
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
+
+        services.AddHttpClient();
 
        
         services.AddDbContext<UserDataContext>(x => x.UseSqlServer(Environment.GetEnvironmentVariable("AzureDb")));

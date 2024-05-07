@@ -6,6 +6,7 @@ public enum ResultStatus
     CREATED = 201,
 
     ERROR = 400,
+    UNAUTHORIZED = 401,
     FORBIDDEN = 403,
     NOT_FOUND = 404,
     EXISTS = 409,
