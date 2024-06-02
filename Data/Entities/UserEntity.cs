@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace UserProvider.Data.Entities;
+namespace Data.Entities;
 
 public class UserEntity : IdentityUser
 {
@@ -23,9 +23,15 @@ public class UserEntity : IdentityUser
     [Column(TypeName = "datetime2")]
     public DateTime Created { get; set; }
 
-    [Required]
     [Column(TypeName = "datetime2")]
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
+
+    [Column(TypeName = "datetime2")]
+    public DateTime? ExpireDate { get; set; }
 
     public bool IsExternalAccount { get; set; } = false;
+
+    public ICollection<UserAddressEntity> UserAddresses { get; set; } = new List<UserAddressEntity>();
+
+    public ICollection<SavedCourseEntity> SavedCourses { get; set; } = new List<SavedCourseEntity>();
 }
