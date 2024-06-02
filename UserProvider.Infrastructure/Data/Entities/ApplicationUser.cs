@@ -2,9 +2,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Data.Entities;
 
-public class UserEntity : IdentityUser
+namespace UserProvider.Infrastructure.Data.Entities;
+
+public class ApplicationUser : IdentityUser 
 {
     [ProtectedPersonalData]
     [Required]
@@ -27,11 +28,19 @@ public class UserEntity : IdentityUser
     public DateTime? Modified { get; set; }
 
     [Column(TypeName = "datetime2")]
-    public DateTime? ExpireDate { get; set; }
+    public DateTime? Expired { get; set; }
+
+    public bool PendingDelete { get; set; } = false;
 
     public bool IsExternalAccount { get; set; } = false;
+
+    public bool DarkMode { get; set; } = false;
+    public bool Newsletter { get; set; } = false;
+
+    public string? NewsletterEmail { get; set; }
 
     public ICollection<UserAddressEntity> UserAddresses { get; set; } = new List<UserAddressEntity>();
 
     public ICollection<SavedCourseEntity> SavedCourses { get; set; } = new List<SavedCourseEntity>();
+
 }

@@ -1,6 +1,6 @@
-﻿using UserProvider.Helpers.Responses;
+﻿using UserProvider.Infrastructure.Helpers.Responses;
 
-namespace UserProvider.Factories;
+namespace UserProvider.Infrastructure.Factories;
 
 public class ResponseFactory
 {
@@ -56,15 +56,6 @@ public class ResponseFactory
         {
             Message = message ?? "Already exists",
             StatusCode = ResultStatus.EXISTS,
-        };
-    }
-
-    public static ResponseResult UnAuthorized(string? message = null)
-    {
-        return new ResponseResult
-        {
-            Message = message ?? "The server encountered an unexpected condition",
-            StatusCode = ResultStatus.UNAUTHORIZED,
         };
     }
 

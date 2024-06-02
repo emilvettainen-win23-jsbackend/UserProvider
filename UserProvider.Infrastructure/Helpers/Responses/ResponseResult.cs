@@ -1,4 +1,4 @@
-﻿namespace UserProvider.Helpers.Responses;
+﻿namespace UserProvider.Infrastructure.Helpers.Responses;
 
 public enum ResultStatus
 {
@@ -6,12 +6,12 @@ public enum ResultStatus
     CREATED = 201,
 
     ERROR = 400,
-    UNAUTHORIZED = 401,
     FORBIDDEN = 403,
     NOT_FOUND = 404,
     EXISTS = 409,
 
     SERVER_ERROR = 500,
+    UNAVAILABLE = 503,
 }
 
 public class ResponseResult
